@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Radius Filter Example with OpenStreetMap</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radius Filter Example with OpenStreetMap</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,16 +11,16 @@
     <div id="controls">
         <div>
             Address: <input type="text" id="address">
-            <button onclick="geocodeAddress()">Go</button>
+            <button onclick="goToAddress()">Go</button>
         </div>
         <div>
             Radius (km): <input type="number" id="radius" value="5">
-            <button onclick="updateRadius()">Update Radius</button>
+            <button onclick="updateRadiusAndFilter()">Update Radius</button>
         </div>
     </div>
     <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>    
     <script src="script.js"></script>
 </body>
 </html>
