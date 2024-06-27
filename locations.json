@@ -1,0 +1,67 @@
+{
+    "Autocross Masters": [
+        {
+            "address": "Terwolde, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/9z2bkll17g0/hqdefault.jpg"
+        },
+        {
+            "address": "Toldijk, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/u2vKYLUmfSY/hqdefault.jpg"
+        },
+        {
+            "address": "Pieterzijl, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=MKjTkPdQlrg",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/MKjTkPdQlrg/hqdefault.jpg"
+        },
+        {
+            "address": "Gendringen, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/LCj1kPg5S9c/hqdefault.jpg"
+        },
+        {
+            "address": "Heers, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": ""
+        },
+        {
+            "address": "Baarle-Nassau, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": ""
+        }
+    ],
+    "NK Autocross": [
+        {
+            "address": "Haarle, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": ""
+        },
+        {
+            "address": "Lochem, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": ""
+        },
+        {
+            "address": "Gersloot, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/8_tBe02Dy58/hqdefault.jpg"
+
+        },
+        {
+            "address": "Rosmalen, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/q7omQMBVSxM/hqdefault.jpg"
+        },
+        {
+            "address": "Toldijk, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/u2vKYLUmfSY/hqdefault.jpg"
+        },
+        {
+            "address": "Albergen, Netherlands",
+            "videoUrl": "https://www.youtube.com/watch?v=video_id",
+            "thumbnailUrl": "https://i1.ytimg.com/vi/Bh4S5XTOJa0/hqdefault.jpg"
+        }
+    ]
+}

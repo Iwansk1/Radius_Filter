@@ -1,0 +1,44 @@
+button{
+    color: black;
+    background-color: rgb(223, 223, 223);
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    color: rgb(223, 223, 223);
+    background-color: black;
+}
+
+#map {
+    height: 90vh;
+}
+
+#radiusInput {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+}
+
+#controls{
+    margin-bottom: 20px;
+}
+
+.btn-watch-video {
+    display: inline-block;
+    background-color: gray;
+    color: red;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-watch-video:hover {
+    background-color: black;
+}
