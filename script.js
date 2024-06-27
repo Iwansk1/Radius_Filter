@@ -17,84 +17,67 @@ let circle = L.circle([53.1653, 5.7815], {
 // Array to hold markers
 let markers = [];
 
+// Function to geocode an address
+async function geocodeAddress(address) {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        if (data.length > 0) {
+            const { lat, lon } = data[0];
+            return L.latLng(parseFloat(lat), parseFloat(lon));
+        } else {
+            throw new Error('Address not found');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to geocode address. Please check your network connection or use a valid address.');
+        return null;
+    }
+}
+
+// Function to go to an address
+async function goToAddress() {
+    const address = document.getElementById("address").value;
+    const location = await geocodeAddress(address);
+    if (location) {
+        map.setView(location, 13);
+        circle.setLatLng(location);
+        updateRadiusAndFilter(); // Update radius and filter markers
+    }
+}
+
+// Function to fetch and process addresses from JSON file
+async function fetchLocations() {
+    try {
+        const response = await fetch('locations.json');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        for (const item of data) {
+            const location = await geocodeAddress(item.address);
+            if (location) {
+                const marker = L.marker(location);
+                markers.push(marker);
+                marker.addTo(map); // Add marker to the map
+            }
+        }
+        updateRadiusAndFilter(); // Update radius and filter markers
+    } catch (error) {
+        console.error('Error fetching locations:', error);
+    }
+}
+
 // Function to update radius circle
 function updateRadius() {
     const radius = document.getElementById("radius").value * 1000; // Convert km to meters
     circle.setRadius(radius);
-    circle.setLatLng(map.getCenter());
-    filterMarkers(radius); // Filter markers based on the new radius
 }
-
-// Function to geocode an address
-function geocodeAddress(address) {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.length > 0) {
-                const lat = parseFloat(data[0].lat);
-                const lon = parseFloat(data[0].lon);
-                return L.latLng(lat, lon);
-            } else {
-                throw new Error('Address not found');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to geocode address. Please check your network connection.');
-            return null;
-        });
-}
-
-// Function to go to an address
-function goToAddress() {
-    const address = document.getElementById("address").value;
-    geocodeAddress(address).then(location => {
-        if (location) {
-            map.setView(location, 13);
-            circle.setLatLng(location);
-            updateRadiusAndFilter(); // Update radius and filter markers
-        }
-    });
-}
-
-// Function to fetch and process addresses from JSON file
-function fetchLocations() {
-    fetch('locations.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            data.forEach(item => {
-                geocodeAddress(item.address).then(location => {
-                    if (location) {
-                        const marker = L.marker(location);
-                        markers.push(marker);
-                        marker.addTo(map); // Add marker to the map
-                    }
-                });
-            });
-            updateRadiusAndFilter(); // Update radius and filter markers
-        })
-        .catch(error => console.error('Error fetching locations:', error));
-}
-
-// Call the function to fetch locations when the page loads
-fetchLocations();
 
 // Function to filter markers based on the current radius
-function filterMarkers(radius) {
+function filterMarkers() {
+    const radius = document.getElementById("radius").value * 1000; // Convert km to meters
     const center = circle.getLatLng();
-
     markers.forEach(marker => {
         const distance = center.distanceTo(marker.getLatLng());
         if (distance <= radius) {
@@ -105,18 +88,18 @@ function filterMarkers(radius) {
     });
 }
 
-// Update radius and filter markers when clicking Update Radius button
+// Update radius and filter markers
 function updateRadiusAndFilter() {
-    const radius = document.getElementById("radius").value * 1000; // Convert km to meters
     updateRadius(); // Update radius circle
-    filterMarkers(radius); // Filter markers
+    filterMarkers(); // Filter markers
 }
 
-// Bind updateRadiusAndFilter function to radius input change
+// Bind event listeners
 document.getElementById("radius").addEventListener("input", updateRadiusAndFilter);
-
-// Bind goToAddress function to Go button click
-document.getElementById("controls").addEventListener("submit", function(event) {
+document.getElementById("controls").addEventListener("submit", event => {
     event.preventDefault();
     goToAddress();
 });
+
+// Call the function to fetch locations when the page loads
+fetchLocations();
