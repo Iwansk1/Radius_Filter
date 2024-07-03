@@ -1,5 +1,5 @@
 // Initialize Leaflet map
-const map = L.map('map').setView([52.0907, 5.1214], 8); // Centered around Utrecht (middle of Netherlands), zoom level 8
+const map = L.map('map').setView([52.0907, 5.1214], 8); // Centered around the middle of the Netherlands, zoom level 8
 
 // Add OpenStreetMap tiles to the map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
